@@ -171,9 +171,9 @@
             this.yjrzjh.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.yjrzjh.Location = new System.Drawing.Point(473, 163);
             this.yjrzjh.Name = "yjrzjh";
-            this.yjrzjh.Size = new System.Drawing.Size(149, 19);
+            this.yjrzjh.Size = new System.Drawing.Size(139, 19);
             this.yjrzjh.TabIndex = 11;
-            this.yjrzjh.Text = "阅卷人证件号：";
+            this.yjrzjh.Text = "阅卷人证件号:";
             // 
             // zjhText
             // 
@@ -198,9 +198,9 @@
             this.label6.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label6.Location = new System.Drawing.Point(473, 332);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(109, 19);
+            this.label6.Size = new System.Drawing.Size(99, 19);
             this.label6.TabIndex = 14;
-            this.label6.Text = "水印位置：";
+            this.label6.Text = "水印位置:";
             // 
             // imageList1
             // 

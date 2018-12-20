@@ -526,28 +526,28 @@ namespace watermarkdemo
                                 content.SetTextMatrix(0, 0);
                                 if (watermarkLocation == "左上角")
                                 {
-                                    content.ShowTextAligned(Element.ALIGN_TOP, xmtext, 5, height - 15, 0);
-                                    content.ShowTextAligned(Element.ALIGN_TOP, zjhtext, 5, height - 35, 0);
-                                    content.ShowTextAligned(Element.ALIGN_TOP, sjtext, 5, height - 55, 0);
+                                    content.ShowTextAligned(Element.ALIGN_TOP, xmtext, 5, height - 20, 0);
+                                    content.ShowTextAligned(Element.ALIGN_TOP, zjhtext, 5, height - 40, 0);
+                                    content.ShowTextAligned(Element.ALIGN_TOP, sjtext, 5, height - 60, 0);
                                 }
                                 else if (watermarkLocation == "右上角")
                                 {
-                                    content.ShowTextAligned(Element.ALIGN_RIGHT, xmtext, width - 5, height - 15, 0);
-                                    content.ShowTextAligned(Element.ALIGN_RIGHT, zjhtext, width - 5, height - 35, 0);
-                                    content.ShowTextAligned(Element.ALIGN_RIGHT, sjtext, width - 5, height - 55, 0);
+                                    content.ShowTextAligned(Element.ALIGN_RIGHT, xmtext, width - 5, height - 20, 0);
+                                    content.ShowTextAligned(Element.ALIGN_RIGHT, zjhtext, width - 5, height - 40, 0);
+                                    content.ShowTextAligned(Element.ALIGN_RIGHT, sjtext, width - 5, height - 60, 0);
 
                                 }
                                 else if (watermarkLocation == "左下角")
                                 {
-                                    content.ShowTextAligned(Element.ALIGN_TOP, xmtext, 5, 45, 0);
-                                    content.ShowTextAligned(Element.ALIGN_TOP, zjhtext, 5, 25, 0);
-                                    content.ShowTextAligned(Element.ALIGN_TOP, sjtext, 5, 5, 0);
+                                    content.ShowTextAligned(Element.ALIGN_TOP, xmtext, 5, 48, 0);
+                                    content.ShowTextAligned(Element.ALIGN_TOP, zjhtext, 5, 28, 0);
+                                    content.ShowTextAligned(Element.ALIGN_TOP, sjtext, 5, 8, 0);
                                 }
                                 else
                                 {
-                                    content.ShowTextAligned(Element.ALIGN_RIGHT, xmtext, width - 5, 45, 0);
-                                    content.ShowTextAligned(Element.ALIGN_RIGHT, zjhtext, width - 5, 25, 0);
-                                    content.ShowTextAligned(Element.ALIGN_RIGHT, sjtext, width - 5, 5, 0);
+                                    content.ShowTextAligned(Element.ALIGN_RIGHT, xmtext, width - 5, 48, 0);
+                                    content.ShowTextAligned(Element.ALIGN_RIGHT, zjhtext, width - 5, 28, 0);
+                                    content.ShowTextAligned(Element.ALIGN_RIGHT, sjtext, width - 5, 8, 0);
                                 }
                                 content.EndText();
                             }
