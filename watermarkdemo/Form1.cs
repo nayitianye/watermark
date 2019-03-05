@@ -2,13 +2,11 @@
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Font = System.Drawing.Font;
 using Image = System.Drawing.Image;
@@ -30,6 +28,9 @@ namespace watermarkdemo
         private string Fileimport, Fileexport;//文件夹批量导入地址,文件夹批量导出地址
         private string watermarkLocation;
         private string pathname = string.Empty;
+        private bool fontbtnflag = false;  //判断选择的水印字体是否触发过
+        private bool colorbtnflag = false;  //判断选择的水印字体颜色是否触发过
+        //private int transparence;//设置水印的透明度
       
         //初始化
         public 水印工具()
@@ -38,7 +39,30 @@ namespace watermarkdemo
             dateTimePicker.Format = DateTimePickerFormat.Custom;
             WatermarkLoaction.SelectedIndex = WatermarkLoaction.Items.IndexOf("左上角");
         }
-        
+
+        //获取水印的透明度的方法
+        //public ImageAttributes GetAlphaImgAttr(int opcity)
+        //{
+        //    if (opcity < 0 || opcity > 100)
+        //    {
+        //        throw new ArgumentOutOfRangeException("opcity 值为 0~100");
+        //    }
+        //    //颜色矩阵
+        //    float[][] matrixItems =
+        //    {
+        //        new float[]{1,0,0,0,0},
+        //        new float[]{0,1,0,0,0},
+        //        new float[]{0,0,1,0,0},
+        //        new float[]{0,0,0,(float)opcity / 100,0},
+        //        new float[]{0,0,0,0,1}
+        //     };
+        //    ColorMatrix colorMatrix = new ColorMatrix(matrixItems);
+        //    ImageAttributes imageAtt = new ImageAttributes();
+        //    imageAtt.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+        //    return imageAtt;
+        //}
+
+
         //批量导入文件夹
         private void Bulkimport_Click(object sender, EventArgs e)
         {
@@ -130,8 +154,25 @@ namespace watermarkdemo
                 SavePath = folderBrowserDialog1.SelectedPath;
             }
             InitWaterMark();
+            //设置水印字体
             Font font = new Font("黑体", 60, FontStyle.Bold);
+            if (fontbtnflag == true)
+            {
+                float fontsize = this.showlabel.Font.Size * 5;
+                FontStyle fontstyle = this.showlabel.Font.Style;
+                string fontname = this.showlabel.Font.Name;
+                font = new Font(fontname, fontsize, fontstyle);
+            }
+            //设置水印字体的填充颜色,填充透明度
             SolidBrush solidBrush = new SolidBrush(Color.FromArgb(120, 255, 0, 0));
+            if (colorbtnflag == true)
+            {
+                int R = this.showlabel.ForeColor.R;
+                int G = this.showlabel.ForeColor.G;
+                int B = this.showlabel.ForeColor.B;
+                int A = int.Parse(this.transparenceBox.Text);
+                solidBrush = new SolidBrush(Color.FromArgb(A, R, G, B));
+            }
             SizeF xmsizeF = new SizeF();
             SizeF zjhsizeF = new SizeF();
             SizeF sjsizeF = new SizeF();
@@ -171,11 +212,17 @@ namespace watermarkdemo
                         graphics.DrawString(zjhtext, font, solidBrush, new Point(5, imgHeight - (int)(sjsizeF.Height + zjhsizeF.Height) + 10));
                         graphics.DrawString(sjtext, font, solidBrush, new Point(5, imgHeight - (int)sjsizeF.Height + 5));
                     }
-                    else
+                    else if(watermarkLocation == "左下角")
                     {
                         graphics.DrawString(xmtext, font, solidBrush, new Point(imgWidth - (int)xmsizeF.Width - 5, imgHeight - (int)(sjsizeF.Height + zjhsizeF.Height + xmsizeF.Height) + 15));
                         graphics.DrawString(zjhtext, font, solidBrush, new Point(imgWidth - (int)zjhsizeF.Width - 5, imgHeight - (int)(sjsizeF.Height + zjhsizeF.Height) + 10));
                         graphics.DrawString(sjtext, font, solidBrush, new Point(imgWidth - (int)sjsizeF.Width - 5, imgHeight - (int)sjsizeF.Height + 5));
+                    }
+                    else
+                    {
+                        graphics.DrawString(xmtext, font, solidBrush, new Point((imgWidth - (int)xmsizeF.Width) / 2, (imgHeight - (int)(sjsizeF.Height + zjhsizeF.Height + xmsizeF.Height)) / 2 - (int)zjhsizeF.Height + 10));
+                        graphics.DrawString(zjhtext, font, solidBrush, new Point((imgWidth - (int)zjhsizeF.Width) / 2, (imgHeight - (int)(sjsizeF.Height + zjhsizeF.Height + xmsizeF.Height)) / 2));
+                        graphics.DrawString(sjtext, font, solidBrush, new Point((imgWidth - (int)sjsizeF.Width) / 2, (imgHeight - (int)(sjsizeF.Height + zjhsizeF.Height + xmsizeF.Height)) / 2 + (int)zjhsizeF.Height + 10));
                     }
                     bitmap.Save(SavePath+"//"+ImageName[i], System.Drawing.Imaging.ImageFormat.Jpeg);
                     graphics.Dispose();
@@ -186,143 +233,25 @@ namespace watermarkdemo
             Mtext.Text = "一键加水印成功";
         }
 
-        /*
-        private void pdfInput_Click(object sender, EventArgs e)
+        private void choiceFontbtn_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog2 = new FolderBrowserDialog();
-            if (folderBrowserDialog2.ShowDialog() == DialogResult.OK)
+            if (this.fontDialog.ShowDialog() == DialogResult.OK)
             {
-                Fileimport = folderBrowserDialog2.SelectedPath;
-            }
-            Mtext.Text = Fileimport;
-        }*/
-
-        /*
-        private void pdfOutput_Click(object sender, EventArgs e)
-        {
-            folderBrowserDialog4 = new FolderBrowserDialog();
-            if (folderBrowserDialog4.ShowDialog() == DialogResult.OK)
-            {
-                Fileexport = folderBrowserDialog4.SelectedPath;
-            }
-            PdfWaterMark(Fileimport, Fileexport);
-            Mtext.Text = "pdf加水印完成";
-        }
-        */
-
-        /// <summary>
-        /// 给pdf文件添加水印
-        /// </summary>
-        /// <param name="sourcePath"></param>
-        /// <param name="destPath"></param>
-        /*
-        private void PdfWaterMark(string sourcePath, string destPath)
-        {
-            if (Directory.Exists(sourcePath))
-            {
-                if (!Directory.Exists(destPath))
-                {
-                    //目标目录不存在则创建
-                    try
-                    {
-                        Directory.CreateDirectory(destPath);
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception("创建目标目录失败：" + ex.Message);
-                    }
-                }
-                //创建水印信息
-                InitWaterMark();
-           
-                //获取源文件下的所有pdf文件
-                List<string> pdffiles = new List<string>(Directory.GetFiles(sourcePath, "*.pdf", SearchOption.TopDirectoryOnly).Where(s => s.EndsWith(".pdf")));
-                PdfStamper pdfStamper = null;
-                pdffiles.ForEach(c =>
-                {
-                    string destFile = Path.Combine(new string[] { destPath, Path.GetFileName(c) });
-                    using (PdfReader pdfReader = new PdfReader(c))
-                    {
-                        try
-                        {
-                            pdfStamper = new PdfStamper(pdfReader, new FileStream(destFile, FileMode.Create));
-                            int total = pdfReader.NumberOfPages + 1;
-                            iTextSharp.text.Rectangle psize = pdfReader.GetPageSize(1);
-                            float width = psize.Width;
-                            float height = psize.Height;
-                            PdfContentByte content;
-                            BaseFont pdffont = BaseFont.CreateFont(@"C:\WINDOWS\Fonts\SIMFANG.TTF", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-                            PdfGState gs = new PdfGState();
-                            for (int i = 1; i < total; i++)
-                            {
-                                content = pdfStamper.GetOverContent(i);//在内容上方加水印
-                                //content = pdfStamper.GetUnderContent(i);//在内容下方加水印
-                                gs.FillOpacity = 0.7f;//透明度
-                                content.SetGState(gs);
-                                //开始写入文本
-                                content.BeginText();
-                                content.SetColorFill(BaseColor.RED);
-                                content.SetFontAndSize(pdffont,15);
-                                content.SetTextMatrix(0, 0);
-                                if(watermarkLocation == "左上角")
-                                {
-                                    content.ShowTextAligned(Element.ALIGN_TOP, xmtext, 5, height-15, 0);
-                                    content.ShowTextAligned(Element.ALIGN_TOP, zjhtext, 5, height-35, 0);
-                                    content.ShowTextAligned(Element.ALIGN_TOP, sjtext, 5, height-55, 0);
-                                }else if (watermarkLocation == "右上角")
-                                {
-                                    content.ShowTextAligned(Element.ALIGN_RIGHT, xmtext, width-5, height - 15, 0);
-                                    content.ShowTextAligned(Element.ALIGN_RIGHT, zjhtext, width-5, height - 35, 0);
-                                    content.ShowTextAligned(Element.ALIGN_RIGHT, sjtext, width-5, height - 55, 0);
-
-                                }
-                                else if (watermarkLocation == "左下角")
-                                {
-                                    content.ShowTextAligned(Element.ALIGN_TOP, xmtext, 5, 45, 0);
-                                    content.ShowTextAligned(Element.ALIGN_TOP, zjhtext, 5, 25, 0);
-                                    content.ShowTextAligned(Element.ALIGN_TOP, sjtext, 5, 5, 0);
-                                }
-                                else
-                                {
-                                    content.ShowTextAligned(Element.ALIGN_RIGHT, xmtext, width-5, 45, 0);
-                                    content.ShowTextAligned(Element.ALIGN_RIGHT, zjhtext, width-5, 25, 0);
-                                    content.ShowTextAligned(Element.ALIGN_RIGHT, sjtext, width-5, 5, 0);
-                                }                                                      
-                                content.EndText();
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            throw ex;
-                        }
-                        finally
-                        {
-
-                            if (pdfStamper != null)
-                                pdfStamper.Close();
-
-                            if (pdfReader != null)
-                                pdfReader.Close();
-                        }
-                    }
-                });
-
-                //获得源文件下所有目录文件
-                List<string> folders = new List<string>(Directory.GetDirectories(sourcePath));
-                folders.ForEach(c =>
-                {
-                    string destDir = Path.Combine(new string[] { destPath, Path.GetFileName(c) });
-                    //采用递归的方法实现
-                    CopyFolder(c, destDir);
-                });
-            }
-            else
-            {
-                throw new DirectoryNotFoundException("源目录不存在！");
+                this.showlabel.Font = this.fontDialog.Font;
+                //Console.WriteLine(this.showlabel.Font.ToString());
+                fontbtnflag = true;
             }
         }
-        */
-     
+
+        private void choiceColorbtn_Click(object sender, EventArgs e)
+        {
+            if (this.colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.showlabel.ForeColor = this.colorDialog.Color;
+                //Console.WriteLine(this.showlabel.ForeColor.ToString());
+                colorbtnflag = true;
+            }
+        }
 
         //初始化水印的三个字段
         public void InitWaterMark()
@@ -374,8 +303,28 @@ namespace watermarkdemo
             this.pictureBox.Image.Dispose();
             CurPath = ImagePaths[markflag];
             InitWaterMark();
+            //设置水印字体
             Font font = new Font("黑体", 60, FontStyle.Bold);
+            if (fontbtnflag == true)
+            {
+                float fontsize = this.showlabel.Font.Size * 5;
+                FontStyle fontstyle = this.showlabel.Font.Style;
+                string fontname = this.showlabel.Font.Name;
+                font = new Font(fontname,fontsize,fontstyle);
+            }
+            //设置水印字体的填充颜色,填充透明度
             SolidBrush solidBrush = new SolidBrush(Color.FromArgb(120, 255, 0, 0));
+            if (colorbtnflag == true)
+            {
+                int R = this.showlabel.ForeColor.R;
+                int G = this.showlabel.ForeColor.G;
+                int B = this.showlabel.ForeColor.B;
+                int A = int.Parse(this.transparenceBox.Text);
+                solidBrush = new SolidBrush(Color.FromArgb(A,R,G,B));
+            }
+            //设置水印字体的透明度
+            //transparence = int.Parse(transparenceBox.Text);
+            //ImageAttributes imageAtt = GetAlphaImgAttr(transparence);
             using (Image image = System.Drawing.Image.FromFile(CurPath))
             {
                 Bitmap bitmap = new Bitmap(image);
@@ -409,11 +358,17 @@ namespace watermarkdemo
                     graphics.DrawString(zjhtext, font, solidBrush, new Point(5, imgHeight - (int)(sjsizeF.Height +zjhsizeF.Height)+ 10));
                     graphics.DrawString(sjtext, font, solidBrush, new Point(5, imgHeight-(int)sjsizeF.Height+5));
                 }
-                else
+                else if(watermarkLocation=="右下角")
                 {
                     graphics.DrawString(xmtext, font, solidBrush, new Point(imgWidth - (int)xmsizeF.Width - 5, imgHeight - (int)(sjsizeF.Height + zjhsizeF.Height + xmsizeF.Height) + 15));
                     graphics.DrawString(zjhtext, font, solidBrush, new Point(imgWidth - (int)zjhsizeF.Width - 5, imgHeight - (int)(sjsizeF.Height + zjhsizeF.Height) + 10));
                     graphics.DrawString(sjtext, font, solidBrush, new Point(imgWidth - (int)sjsizeF.Width - 5, imgHeight - (int)sjsizeF.Height + 5));
+                }
+                else
+                {
+                    graphics.DrawString(xmtext, font, solidBrush, new Point((imgWidth - (int)xmsizeF.Width) / 2, (imgHeight - (int)(sjsizeF.Height + zjhsizeF.Height + xmsizeF.Height)) / 2 -(int)zjhsizeF.Height+10));
+                    graphics.DrawString(zjhtext, font, solidBrush, new Point((imgWidth - (int)zjhsizeF.Width) / 2, (imgHeight - (int)(sjsizeF.Height + zjhsizeF.Height + xmsizeF.Height)) / 2 ));
+                    graphics.DrawString(sjtext, font, solidBrush, new Point((imgWidth - (int)sjsizeF.Width) / 2, (imgHeight - (int)(sjsizeF.Height + zjhsizeF.Height + xmsizeF.Height)) / 2 +(int)zjhsizeF.Height+10));
                 }
                 this.pictureBox.Image=bitmap;
                 graphics.Dispose();
@@ -440,8 +395,25 @@ namespace watermarkdemo
                 }
                 //创建水印信息
                 InitWaterMark();
+                //设置水印字体
                 Font font = new Font("黑体", 60, FontStyle.Bold);
+                if (fontbtnflag == true)
+                {
+                    float fontsize = this.showlabel.Font.Size * 5;
+                    FontStyle fontstyle = this.showlabel.Font.Style;
+                    string fontname = this.showlabel.Font.Name;
+                    font = new Font(fontname, fontsize, fontstyle);
+                }
+                //设置水印字体的填充颜色,填充透明度
                 SolidBrush solidBrush = new SolidBrush(Color.FromArgb(120, 255, 0, 0));
+                if (colorbtnflag == true)
+                {
+                    int R = this.showlabel.ForeColor.R;
+                    int G = this.showlabel.ForeColor.G;
+                    int B = this.showlabel.ForeColor.B;
+                    int A = int.Parse(this.transparenceBox.Text);
+                    solidBrush = new SolidBrush(Color.FromArgb(A, R, G, B));
+                }
                 SizeF xmsizeF = new SizeF();
                 SizeF zjhsizeF = new SizeF();
                 SizeF sjsizeF = new SizeF();
@@ -481,11 +453,17 @@ namespace watermarkdemo
                             graphics.DrawString(zjhtext, font, solidBrush, new Point(5, imgHeight - (int)(sjsizeF.Height + zjhsizeF.Height) + 10));
                             graphics.DrawString(sjtext, font, solidBrush, new Point(5, imgHeight - (int)sjsizeF.Height + 5));
                         }
-                        else
+                        else if (watermarkLocation == "右下角")
                         {
                             graphics.DrawString(xmtext, font, solidBrush, new Point(imgWidth - (int)xmsizeF.Width - 5, imgHeight - (int)(sjsizeF.Height + zjhsizeF.Height + xmsizeF.Height) + 15));
                             graphics.DrawString(zjhtext, font, solidBrush, new Point(imgWidth - (int)zjhsizeF.Width - 5, imgHeight - (int)(sjsizeF.Height + zjhsizeF.Height) + 10));
                             graphics.DrawString(sjtext, font, solidBrush, new Point(imgWidth - (int)sjsizeF.Width - 5, imgHeight - (int)sjsizeF.Height + 5));
+                        }
+                        else
+                        {
+                            graphics.DrawString(xmtext, font, solidBrush, new Point((imgWidth - (int)xmsizeF.Width) / 2, (imgHeight - (int)(sjsizeF.Height + zjhsizeF.Height + xmsizeF.Height)) / 2 - (int)zjhsizeF.Height + 10));
+                            graphics.DrawString(zjhtext, font, solidBrush, new Point((imgWidth - (int)zjhsizeF.Width) / 2, (imgHeight - (int)(sjsizeF.Height + zjhsizeF.Height + xmsizeF.Height)) / 2));
+                            graphics.DrawString(sjtext, font, solidBrush, new Point((imgWidth - (int)sjsizeF.Width) / 2, (imgHeight - (int)(sjsizeF.Height + zjhsizeF.Height + xmsizeF.Height)) / 2 + (int)zjhsizeF.Height + 10));
                         }
                         bitmap.Save(destFile, System.Drawing.Imaging.ImageFormat.Jpeg);
                         graphics.Dispose();
@@ -511,18 +489,32 @@ namespace watermarkdemo
                             float height = psize.Height;
                             PdfContentByte content;
                             BaseFont pdffont = BaseFont.CreateFont(@"C:\WINDOWS\Fonts\SIMFANG.TTF", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-                            PdfGState gs = new PdfGState();
+                            //BaseFont pdffont = BaseFont.CreateFont(this.showlabel.Font);
                             for (int i = 1; i < total; i++)
                             {
+                                PdfGState gs = new PdfGState();
                                 content = pdfStamper.GetOverContent(i);//在内容上方加水印
                                 //content = pdfStamper.GetUnderContent(i);//在内容下方加水印
-                                gs.FillOpacity = 0.7f;//透明度
+                                gs.FillOpacity = (int.Parse(transparenceBox.Text)/255);//透明度
                                 content.SetGState(gs);
                                 //content.SetGrayFill(0.3f);
                                 //开始写入文本
                                 content.BeginText();
                                 content.SetColorFill(BaseColor.RED);
+                                if (colorbtnflag == true)
+                                {
+                                    int R = this.showlabel.ForeColor.R;
+                                    int G = this.showlabel.ForeColor.G;
+                                    int B = this.showlabel.ForeColor.B;
+                                    int A = int.Parse(this.transparenceBox.Text);
+                                    BaseColor baseColor = new BaseColor(R, G, B, A);
+                                    content.SetColorFill(baseColor);
+                                }
                                 content.SetFontAndSize(pdffont, 15);
+                                if (fontbtnflag == true)
+                                {
+                                    content.SetFontAndSize(pdffont, this.showlabel.Font.Size );
+                                }
                                 content.SetTextMatrix(0, 0);
                                 if (watermarkLocation == "左上角")
                                 {
@@ -543,11 +535,17 @@ namespace watermarkdemo
                                     content.ShowTextAligned(Element.ALIGN_TOP, zjhtext, 5, 28, 0);
                                     content.ShowTextAligned(Element.ALIGN_TOP, sjtext, 5, 8, 0);
                                 }
-                                else
+                                else if (watermarkLocation == "左下角")
                                 {
                                     content.ShowTextAligned(Element.ALIGN_RIGHT, xmtext, width - 5, 48, 0);
                                     content.ShowTextAligned(Element.ALIGN_RIGHT, zjhtext, width - 5, 28, 0);
                                     content.ShowTextAligned(Element.ALIGN_RIGHT, sjtext, width - 5, 8, 0);
+                                }
+                                else
+                                {
+                                    content.ShowTextAligned(Element.ALIGN_CENTER, xmtext, width /2, height/2-20, 0);
+                                    content.ShowTextAligned(Element.ALIGN_CENTER, zjhtext, width/2, height/2, 0);
+                                    content.ShowTextAligned(Element.ALIGN_CENTER, sjtext, width/2, height/2+20, 0);
                                 }
                                 content.EndText();
                             }

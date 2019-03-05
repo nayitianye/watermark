@@ -53,6 +53,14 @@
             this.folderBrowserDialog3 = new System.Windows.Forms.FolderBrowserDialog();
             this.WatermarkLoaction = new System.Windows.Forms.ComboBox();
             this.folderBrowserDialog4 = new System.Windows.Forms.FolderBrowserDialog();
+            this.choiceFontbtn = new System.Windows.Forms.Button();
+            this.showlabel = new System.Windows.Forms.Label();
+            this.fontDialog = new System.Windows.Forms.FontDialog();
+            this.choiceColorbtn = new System.Windows.Forms.Button();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.label3 = new System.Windows.Forms.Label();
+            this.transparenceBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -141,7 +149,8 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(474, 33);
+            this.label2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label2.Location = new System.Drawing.Point(474, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 16);
             this.label2.TabIndex = 8;
@@ -162,14 +171,14 @@
             // 
             this.xmText.Location = new System.Drawing.Point(477, 113);
             this.xmText.Name = "xmText";
-            this.xmText.Size = new System.Drawing.Size(200, 26);
+            this.xmText.Size = new System.Drawing.Size(210, 26);
             this.xmText.TabIndex = 10;
             // 
             // yjrzjh
             // 
             this.yjrzjh.AutoSize = true;
             this.yjrzjh.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.yjrzjh.Location = new System.Drawing.Point(473, 163);
+            this.yjrzjh.Location = new System.Drawing.Point(473, 156);
             this.yjrzjh.Name = "yjrzjh";
             this.yjrzjh.Size = new System.Drawing.Size(139, 19);
             this.yjrzjh.TabIndex = 11;
@@ -177,16 +186,16 @@
             // 
             // zjhText
             // 
-            this.zjhText.Location = new System.Drawing.Point(477, 197);
+            this.zjhText.Location = new System.Drawing.Point(477, 190);
             this.zjhText.Name = "zjhText";
-            this.zjhText.Size = new System.Drawing.Size(200, 26);
+            this.zjhText.Size = new System.Drawing.Size(210, 26);
             this.zjhText.TabIndex = 12;
             // 
             // yjsj
             // 
             this.yjsj.AutoSize = true;
             this.yjsj.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.yjsj.Location = new System.Drawing.Point(473, 243);
+            this.yjsj.Location = new System.Drawing.Point(473, 233);
             this.yjsj.Name = "yjsj";
             this.yjsj.Size = new System.Drawing.Size(99, 19);
             this.yjsj.TabIndex = 13;
@@ -196,7 +205,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(473, 332);
+            this.label6.Location = new System.Drawing.Point(473, 317);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(99, 19);
             this.label6.TabIndex = 14;
@@ -211,9 +220,9 @@
             // dateTimePicker
             // 
             this.dateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.dateTimePicker.Location = new System.Drawing.Point(477, 281);
+            this.dateTimePicker.Location = new System.Drawing.Point(477, 269);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(200, 26);
+            this.dateTimePicker.Size = new System.Drawing.Size(210, 26);
             this.dateTimePicker.TabIndex = 16;
             // 
             // Bulkimport
@@ -243,19 +252,85 @@
             "左上角",
             "右上角",
             "左下角",
-            "右下角"});
-            this.WatermarkLoaction.Location = new System.Drawing.Point(477, 363);
+            "右下角",
+            "平铺"});
+            this.WatermarkLoaction.Location = new System.Drawing.Point(592, 317);
             this.WatermarkLoaction.Name = "WatermarkLoaction";
-            this.WatermarkLoaction.Size = new System.Drawing.Size(121, 24);
+            this.WatermarkLoaction.Size = new System.Drawing.Size(95, 24);
             this.WatermarkLoaction.TabIndex = 19;
             this.WatermarkLoaction.SelectedIndexChanged += new System.EventHandler(this.WatermarkLoaction_SelectedIndexChanged);
+            // 
+            // choiceFontbtn
+            // 
+            this.choiceFontbtn.Location = new System.Drawing.Point(477, 413);
+            this.choiceFontbtn.Name = "choiceFontbtn";
+            this.choiceFontbtn.Size = new System.Drawing.Size(95, 42);
+            this.choiceFontbtn.TabIndex = 21;
+            this.choiceFontbtn.Text = "选择水印字体";
+            this.choiceFontbtn.UseVisualStyleBackColor = true;
+            this.choiceFontbtn.Click += new System.EventHandler(this.choiceFontbtn_Click);
+            // 
+            // showlabel
+            // 
+            this.showlabel.AutoSize = true;
+            this.showlabel.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.showlabel.Location = new System.Drawing.Point(473, 474);
+            this.showlabel.Name = "showlabel";
+            this.showlabel.Size = new System.Drawing.Size(89, 19);
+            this.showlabel.TabIndex = 22;
+            this.showlabel.Text = "水印示例";
+            // 
+            // choiceColorbtn
+            // 
+            this.choiceColorbtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.choiceColorbtn.Location = new System.Drawing.Point(592, 413);
+            this.choiceColorbtn.Name = "choiceColorbtn";
+            this.choiceColorbtn.Size = new System.Drawing.Size(95, 42);
+            this.choiceColorbtn.TabIndex = 23;
+            this.choiceColorbtn.Text = "选择水印颜色";
+            this.choiceColorbtn.UseVisualStyleBackColor = true;
+            this.choiceColorbtn.Click += new System.EventHandler(this.choiceColorbtn_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(473, 360);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(119, 19);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "水印透明度:";
+            // 
+            // transparenceBox
+            // 
+            this.transparenceBox.Location = new System.Drawing.Point(592, 353);
+            this.transparenceBox.Name = "transparenceBox";
+            this.transparenceBox.Size = new System.Drawing.Size(95, 26);
+            this.transparenceBox.TabIndex = 25;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("黑体", 7.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label4.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label4.Location = new System.Drawing.Point(565, 390);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(123, 10);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "透明度设置范围为0-255";
             // 
             // 水印工具
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(692, 634);
+            this.ClientSize = new System.Drawing.Size(700, 634);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.transparenceBox);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.choiceColorbtn);
+            this.Controls.Add(this.showlabel);
+            this.Controls.Add(this.choiceFontbtn);
             this.Controls.Add(this.WatermarkLoaction);
             this.Controls.Add(this.batchexport);
             this.Controls.Add(this.Bulkimport);
@@ -311,6 +386,14 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog3;
         private System.Windows.Forms.ComboBox WatermarkLoaction;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog4;
+        private System.Windows.Forms.Button choiceFontbtn;
+        private System.Windows.Forms.Label showlabel;
+        private System.Windows.Forms.FontDialog fontDialog;
+        private System.Windows.Forms.Button choiceColorbtn;
+        private System.Windows.Forms.ColorDialog colorDialog;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox transparenceBox;
+        private System.Windows.Forms.Label label4;
     }
 }
 
