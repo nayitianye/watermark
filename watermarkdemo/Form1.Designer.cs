@@ -104,7 +104,7 @@
             this.open.TabIndex = 3;
             this.open.Text = "打开";
             this.open.UseVisualStyleBackColor = true;
-            this.open.Click += new System.EventHandler(this.open_Click);
+            this.open.Click += new System.EventHandler(this.Open_Click);
             // 
             // prebtn
             // 
@@ -114,7 +114,7 @@
             this.prebtn.TabIndex = 4;
             this.prebtn.Text = "上一页";
             this.prebtn.UseVisualStyleBackColor = true;
-            this.prebtn.Click += new System.EventHandler(this.prebtn_Click);
+            this.prebtn.Click += new System.EventHandler(this.Prebtn_Click);
             // 
             // nextbtn
             // 
@@ -124,7 +124,7 @@
             this.nextbtn.TabIndex = 5;
             this.nextbtn.Text = "下一页";
             this.nextbtn.UseVisualStyleBackColor = true;
-            this.nextbtn.Click += new System.EventHandler(this.nextbtn_Click);
+            this.nextbtn.Click += new System.EventHandler(this.Nextbtn_Click);
             // 
             // previewbtn
             // 
@@ -134,7 +134,7 @@
             this.previewbtn.TabIndex = 6;
             this.previewbtn.Text = "预览";
             this.previewbtn.UseVisualStyleBackColor = true;
-            this.previewbtn.Click += new System.EventHandler(this.previewbtn_Click);
+            this.previewbtn.Click += new System.EventHandler(this.Previewbtn_Click);
             // 
             // watermarkbtn
             // 
@@ -144,7 +144,7 @@
             this.watermarkbtn.TabIndex = 7;
             this.watermarkbtn.Text = "一键加水印";
             this.watermarkbtn.UseVisualStyleBackColor = true;
-            this.watermarkbtn.Click += new System.EventHandler(this.watermarkbtn_Click);
+            this.watermarkbtn.Click += new System.EventHandler(this.Watermarkbtn_Click);
             // 
             // label2
             // 
@@ -268,7 +268,7 @@
             this.choiceFontbtn.TabIndex = 21;
             this.choiceFontbtn.Text = "选择水印字体";
             this.choiceFontbtn.UseVisualStyleBackColor = true;
-            this.choiceFontbtn.Click += new System.EventHandler(this.choiceFontbtn_Click);
+            this.choiceFontbtn.Click += new System.EventHandler(this.ChoiceFontbtn_Click);
             // 
             // showlabel
             // 
@@ -289,7 +289,7 @@
             this.choiceColorbtn.TabIndex = 23;
             this.choiceColorbtn.Text = "选择水印颜色";
             this.choiceColorbtn.UseVisualStyleBackColor = true;
-            this.choiceColorbtn.Click += new System.EventHandler(this.choiceColorbtn_Click);
+            this.choiceColorbtn.Click += new System.EventHandler(this.ChoiceColorbtn_Click);
             // 
             // label3
             // 
