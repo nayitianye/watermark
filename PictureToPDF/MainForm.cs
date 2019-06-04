@@ -42,17 +42,23 @@ namespace PictureToPDF
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (PdfName.Text != "")
+            SetPdfPath(PdfName.Text);
+            ImageConvertToPdf(ImagePaths);
+        }
+        
+        //设置Pdf的输出地址
+        public void SetPdfPath(string path)
+        {
+            if (path != "")
             {
-                PdfFileName = Fileimport + "//" + PdfName.Text;
+                PdfFileName = Fileimport + "//" + path;
             }
             else
             {
                 PdfFileName = "C://Users//yyb//Desktop//图片转PDF.pdf";
             }
-            ImageConvertToPdf(ImagePaths);
         }
-
+        //图片转换成PDF
         public void ImageConvertToPdf(List<string> sourcepath)
         {
             ChangeTheImageToStandard(ImagePaths);
@@ -90,6 +96,7 @@ namespace PictureToPDF
                 images.Add(bmImage);
             }
         }
+        //获取文件夹下的所有图片的名称
         public void GetImagePath(string Fileimport)
         {
             List<string> files = new List<string>(Directory.GetFiles(Fileimport, "*.*", SearchOption.TopDirectoryOnly).Where(s => s.EndsWith(".jpg") || s.EndsWith(".tif")));
@@ -99,7 +106,7 @@ namespace PictureToPDF
                 ImagePaths.Add(destFile);
             });
         }
-             
+          
         public void CopyFolder(string sourcePath, string destPath)
         {
             if (Directory.Exists(sourcePath))
@@ -124,7 +131,7 @@ namespace PictureToPDF
                    
                 });
                 //获得源文件下所有目录文件
-                List<string> folders = new List<string>(Directory.GetDirectories(sourcePath));
+                 List<string> folders = new List<string>(Directory.GetDirectories(sourcePath));
                 folders.ForEach(c =>
                 {
                     string destDir = Path.Combine(new string[] { destPath, Path.GetFileName(c) });
