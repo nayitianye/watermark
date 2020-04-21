@@ -61,6 +61,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.transparenceBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.skinEngine1 = new Sunisoft.IrisSkin.SkinEngine();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,7 +72,7 @@
             this.label1.Location = new System.Drawing.Point(17, 19);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 19);
+            this.label1.Size = new System.Drawing.Size(130, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "提示信息：";
             // 
@@ -82,7 +83,7 @@
             this.Mtext.ForeColor = System.Drawing.SystemColors.Highlight;
             this.Mtext.Location = new System.Drawing.Point(133, 19);
             this.Mtext.Name = "Mtext";
-            this.Mtext.Size = new System.Drawing.Size(21, 14);
+            this.Mtext.Size = new System.Drawing.Size(26, 18);
             this.Mtext.TabIndex = 1;
             this.Mtext.Text = "  ";
             // 
@@ -152,7 +153,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.label2.Location = new System.Drawing.Point(474, 51);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 16);
+            this.label2.Size = new System.Drawing.Size(89, 20);
             this.label2.TabIndex = 8;
             this.label2.Text = "水印信息";
             // 
@@ -163,7 +164,7 @@
             this.yjrxm.ForeColor = System.Drawing.SystemColors.ControlText;
             this.yjrxm.Location = new System.Drawing.Point(473, 75);
             this.yjrxm.Name = "yjrxm";
-            this.yjrxm.Size = new System.Drawing.Size(119, 19);
+            this.yjrxm.Size = new System.Drawing.Size(142, 24);
             this.yjrxm.TabIndex = 9;
             this.yjrxm.Text = "阅卷人姓名:";
             // 
@@ -171,7 +172,7 @@
             // 
             this.xmText.Location = new System.Drawing.Point(477, 113);
             this.xmText.Name = "xmText";
-            this.xmText.Size = new System.Drawing.Size(210, 26);
+            this.xmText.Size = new System.Drawing.Size(210, 30);
             this.xmText.TabIndex = 10;
             // 
             // yjrzjh
@@ -180,7 +181,7 @@
             this.yjrzjh.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.yjrzjh.Location = new System.Drawing.Point(473, 156);
             this.yjrzjh.Name = "yjrzjh";
-            this.yjrzjh.Size = new System.Drawing.Size(139, 19);
+            this.yjrzjh.Size = new System.Drawing.Size(166, 24);
             this.yjrzjh.TabIndex = 11;
             this.yjrzjh.Text = "阅卷人证件号:";
             // 
@@ -188,7 +189,7 @@
             // 
             this.zjhText.Location = new System.Drawing.Point(477, 190);
             this.zjhText.Name = "zjhText";
-            this.zjhText.Size = new System.Drawing.Size(210, 26);
+            this.zjhText.Size = new System.Drawing.Size(210, 30);
             this.zjhText.TabIndex = 12;
             // 
             // yjsj
@@ -197,7 +198,7 @@
             this.yjsj.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.yjsj.Location = new System.Drawing.Point(473, 233);
             this.yjsj.Name = "yjsj";
-            this.yjsj.Size = new System.Drawing.Size(99, 19);
+            this.yjsj.Size = new System.Drawing.Size(118, 24);
             this.yjsj.TabIndex = 13;
             this.yjsj.Text = "阅卷时间:";
             // 
@@ -207,7 +208,7 @@
             this.label6.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label6.Location = new System.Drawing.Point(473, 317);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(99, 19);
+            this.label6.Size = new System.Drawing.Size(118, 24);
             this.label6.TabIndex = 14;
             this.label6.Text = "水印位置:";
             // 
@@ -222,8 +223,12 @@
             this.dateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.dateTimePicker.Location = new System.Drawing.Point(477, 269);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(210, 26);
+            this.dateTimePicker.Size = new System.Drawing.Size(210, 30);
             this.dateTimePicker.TabIndex = 16;
+            // 
+            // folderBrowserDialog1
+            // 
+            this.folderBrowserDialog1.HelpRequest += new System.EventHandler(this.folderBrowserDialog1_HelpRequest);
             // 
             // Bulkimport
             // 
@@ -256,7 +261,7 @@
             "平铺"});
             this.WatermarkLoaction.Location = new System.Drawing.Point(592, 317);
             this.WatermarkLoaction.Name = "WatermarkLoaction";
-            this.WatermarkLoaction.Size = new System.Drawing.Size(95, 24);
+            this.WatermarkLoaction.Size = new System.Drawing.Size(95, 28);
             this.WatermarkLoaction.TabIndex = 19;
             this.WatermarkLoaction.SelectedIndexChanged += new System.EventHandler(this.WatermarkLoaction_SelectedIndexChanged);
             // 
@@ -276,7 +281,7 @@
             this.showlabel.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.showlabel.Location = new System.Drawing.Point(473, 474);
             this.showlabel.Name = "showlabel";
-            this.showlabel.Size = new System.Drawing.Size(89, 19);
+            this.showlabel.Size = new System.Drawing.Size(106, 24);
             this.showlabel.TabIndex = 22;
             this.showlabel.Text = "水印示例";
             // 
@@ -297,7 +302,7 @@
             this.label3.Font = new System.Drawing.Font("黑体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label3.Location = new System.Drawing.Point(473, 360);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(119, 19);
+            this.label3.Size = new System.Drawing.Size(142, 24);
             this.label3.TabIndex = 24;
             this.label3.Text = "水印透明度:";
             // 
@@ -305,7 +310,7 @@
             // 
             this.transparenceBox.Location = new System.Drawing.Point(592, 353);
             this.transparenceBox.Name = "transparenceBox";
-            this.transparenceBox.Size = new System.Drawing.Size(95, 26);
+            this.transparenceBox.Size = new System.Drawing.Size(95, 30);
             this.transparenceBox.TabIndex = 25;
             // 
             // label4
@@ -315,13 +320,22 @@
             this.label4.ForeColor = System.Drawing.Color.RoyalBlue;
             this.label4.Location = new System.Drawing.Point(565, 390);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(123, 10);
+            this.label4.Size = new System.Drawing.Size(167, 13);
             this.label4.TabIndex = 26;
             this.label4.Text = "透明度设置范围为0-255";
             // 
+            // skinEngine1
+            // 
+            this.skinEngine1.@__DrawButtonFocusRectangle = true;
+            this.skinEngine1.DisabledButtonTextColor = System.Drawing.Color.Gray;
+            this.skinEngine1.DisabledMenuFontColor = System.Drawing.SystemColors.GrayText;
+            this.skinEngine1.InactiveCaptionColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.skinEngine1.SerialNumber = "";
+            this.skinEngine1.SkinFile = null;
+            // 
             // 水印工具
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(700, 634);
@@ -354,6 +368,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "水印工具";
             this.Text = "watermark";
+            this.Load += new System.EventHandler(this.水印工具_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -394,6 +409,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox transparenceBox;
         private System.Windows.Forms.Label label4;
+        private Sunisoft.IrisSkin.SkinEngine skinEngine1;
     }
 }
 

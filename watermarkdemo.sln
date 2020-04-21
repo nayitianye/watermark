@@ -1,13 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2050
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "watermarkdemo", "watermarkdemo\watermarkdemo.csproj", "{0DD37C27-491B-49B5-9E66-D8E8ADD7F0E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PictureToPDF", "PictureToPDF\PictureToPDF.csproj", "{FA5C8B4D-E520-4DD8-8BA5-E8E7EFEE56FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergePDF", "MergePDF\MergePDF.csproj", "{38B43A8B-D9DA-4727-ABB9-3EF0A78D1656}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PictureWaterMark", "PictureWaterMark\PictureWaterMark.csproj", "{CE7A5F6C-E3F7-40CE-9355-0278891709D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcrToCatalog", "OcrToCatalog\OcrToCatalog.csproj", "{6FB4576B-F807-48B7-ACDE-B33DEB031858}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FtpClient", "FtpClient\FtpClient.csproj", "{9F0C57FF-18CF-4BC5-9151-33E5AA8244BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +33,18 @@ Global
 		{38B43A8B-D9DA-4727-ABB9-3EF0A78D1656}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38B43A8B-D9DA-4727-ABB9-3EF0A78D1656}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38B43A8B-D9DA-4727-ABB9-3EF0A78D1656}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE7A5F6C-E3F7-40CE-9355-0278891709D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE7A5F6C-E3F7-40CE-9355-0278891709D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE7A5F6C-E3F7-40CE-9355-0278891709D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE7A5F6C-E3F7-40CE-9355-0278891709D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FB4576B-F807-48B7-ACDE-B33DEB031858}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FB4576B-F807-48B7-ACDE-B33DEB031858}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FB4576B-F807-48B7-ACDE-B33DEB031858}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FB4576B-F807-48B7-ACDE-B33DEB031858}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F0C57FF-18CF-4BC5-9151-33E5AA8244BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F0C57FF-18CF-4BC5-9151-33E5AA8244BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F0C57FF-18CF-4BC5-9151-33E5AA8244BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F0C57FF-18CF-4BC5-9151-33E5AA8244BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

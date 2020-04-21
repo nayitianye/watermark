@@ -385,6 +385,16 @@ namespace watermarkdemo
             }
         }
 
+        private void folderBrowserDialog1_HelpRequest(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 水印工具_Load(object sender, EventArgs e)
+        {
+           skinEngine1.SkinFile = Application.StartupPath + @"/Skins/OneBlue.ssk";
+        }
+
         //初始化文字水印的三个字段
         public void InitWaterMark()
         {
