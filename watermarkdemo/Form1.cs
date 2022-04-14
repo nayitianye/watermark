@@ -398,9 +398,12 @@ namespace watermarkdemo
         //初始化文字水印的三个字段
         public void InitWaterMark()
         {
-            xmtext = yjrxm.Text + xmText.Text;
-            zjhtext = yjrzjh.Text + zjhText.Text;
-            sjtext = yjsj.Text + dateTimePicker.Text;
+            //xmtext = yjrxm.Text + xmText.Text;
+            //zjhtext = yjrzjh.Text + zjhText.Text;
+            //sjtext = yjsj.Text + dateTimePicker.Text;
+            xmtext = xmText.Text;
+            //zjhtext = zjhText.Text;
+            //sjtext = dateTimePicker.Text;
         }
         /// <summary>
         /// 用来设置图片所加水印的颜色和透明度
